@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!--
+Sample form, Table Based Layout
+Alan Riggins
+CS545, Fall 2015
+
+Note that the CSS is included in the header to make the example
+easier to follow.  
+-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;
+    charset=iso-8859-1" />
+    <title>Sample Table Based Form</title>
+<style type="text/css">
+body { 
+    background-color: #EEF; 
+    }
+h1, h3 { 
+    text-align: center;
+    } 
+    
+h3 { color: red; }   
+
+fieldset {
+    width: 600px;
+    margin: 0 auto 0 auto;
+    }
+    
+.buttons {
+    text-align: center;
+    padding: 25px 0 5px 0;
+    }   
+</style>    
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="scripts.js"></script>
+</head>
+
+
+<body>
+    <div>
+        <h1>Sample Table Based Form</h1>
+	<fieldset>
+	<legend>Personal Information</legend>
+        <form  
+        name="customer"
+	enctype="multipart/form-data"
+        method="post" 
+        action="echo.php">
+	    <table>
+                <tr>		
+                    <td><label for="fname">First Name:</label></td>
+                    <td colspan="2"><input type="text" name="fname" id="fname" size="20"  /></td>
+                    <td><label for="lname">Last Name:</label></td>
+                    <td colspan="2"><input type="text" name="lname" id="lname" size="20"  /></td>                    
+                </tr>
+                <tr>		
+                    <td><label for="address1">Address:</label></td>
+                    <td colspan="5"><input type="text" name="address1" id="address1" size="50" /></td>
+                </tr> 
+                <tr>		
+                    <td><label for="address2">Address:</label></td>
+                    <td colspan="5"><input type="text" name="address2" id="address2" size="50" /></td>
+                </tr>                  
+                <tr>		
+                    <td><label for="city">City:</label></td>
+                    <td><input type="text" name="city" id="city" size="15" /></td>
+                    <td><label for="state">State:</label></td>
+                    <td><input type="text" name="state" id="state" size="5" /></td>
+                    <td><label for="zip">Zipcode:</label></td>
+                    <td><input type="text" name="zip" id="zip" size="10" /></td>                                        
+                </tr>                               
+            </table>
+            
+            <div class="buttons">
+                <input type="reset" />
+                <input type="submit" value="Submit" />
+            </div>        
+        </form>   
+	</fieldset>  
+	<h3 id="status">&nbsp;</h3>   
+    </div>
+</body>
+
+</html>
