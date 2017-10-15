@@ -7,6 +7,18 @@ i{
 	color: #dc3545;
 	font-size: 300%;
 }
+
+form{
+	padding-top: 30px;
+	margin: auto;
+	width: 600px;
+}
+
+#form-title{
+	padding-top: 30px;
+	padding-bottom: 30px;
+	text-align: center;
+}
 .red{
 	color:#dc3545;
 }
@@ -56,6 +68,13 @@ background-size: cover;
 height: 720px;
 background: no-repeat center center cover;
 
+}
+
+#cta{
+	background-color: #343a40;
+	color: #fff;
+	text-align: center;
+	padding: 40px;
 }
 
 @media screen and (max-width: 600px) {
