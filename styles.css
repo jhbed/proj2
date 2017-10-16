@@ -11,7 +11,34 @@ i{
 form{
 	padding-top: 30px;
 	margin: auto;
-	width: 600px;
+	width: 800px;
+}
+
+button{
+	padding-bottom: 20px;
+	width: 200px;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.submit{
+	padding: 20px;
+	text-align: center;
+}
+
+.radio-title{
+	display: block;
+}
+
+#phone-email-labels .form-group{
+	margin-bottom: 0px;
+}
+
+.no-bottom{
+	padding-bottom: 0px;
+	margin-bottom: 0px;
 }
 
 #form-title{
