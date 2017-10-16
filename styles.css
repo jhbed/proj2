@@ -14,8 +14,12 @@ form{
 	width: 800px;
 }
 
-button{
-	padding-bottom: 20px;
+#error{
+	color: #dc3545;
+}
+
+#submit-button{
+	margin-bottom: 20px;
 	width: 200px;
 }
 
