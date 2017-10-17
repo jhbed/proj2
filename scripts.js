@@ -1,3 +1,7 @@
+//Jake Bedard
+//jadrn007
+//Red ID 818121974
+
 var msg = ['Please enter your first name',
 		   'Please enter your last name',
 		   'Please enter your address',
@@ -9,6 +13,19 @@ var msg = ['Please enter your first name',
 		   'Please enter your full phone number',
 		   'Please enter your full phone number',
 		   'Please enter your full phone number',];
+
+function isValidState(state) {                                
+    var stateList = new Array("AK","AL","AR","AZ","CA","CO","CT","DC",
+    "DE","FL","GA","GU","HI","IA","ID","IL","IN","KS","KY","LA","MA",
+    "MD","ME","MH","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ",
+    "NM","NV","NY","OH","OK","OR","PA","PR","RI","SC","SD","TN","TX",
+    "UT","VA","VT","WA","WI","WV","WY");
+    for(var i=0; i < stateList.length; i++){
+        if(!stateList[i] == $.trim(state))
+            return true;
+    }
+    return false;
+} 
 
 $(document).ready(function(){
 
@@ -37,9 +54,55 @@ $(document).ready(function(){
 		return validate();
 	});
 
+	handle[4].on('keyup', function(){
+		handle[4].val(handle[4].val().toUpperCase());
+	});
+
 	function validate(){
 
-		var validated = false;
+		//check all text categories
+		for(var i=0; i<11; i++) {
+			if($.trim(handle[i].val()) == ""){
+			    $('#error').text(msg[i]);
+			    handle[i].focus();
+			    return false;
+			}
+		}
+		/*
+		//check states
+		if(isValidState(handle[4].val()) == "") { 
+            $('#error').text("Please make sure you are using the correct 2 letter state abreviation");
+            handle[4].focus();           
+            return false;
+        }
+        */
+
+		//check exp level
+		var choiceExp = $('input[name="experience"]');
+		var selectedExp;
+		$.each(choiceExp, function(k,v){
+			if(this.checked)
+				selectedExp = v.value;
+		});
+		if(!selectedExp){
+			$('#error').text("Please check a box for your experience level");
+			return false;
+		}
+		//end check exp level
+
+		//check gender
+		var choiceGen = $('input[name="gender"]');
+		var selectedGen;
+		$.each(choiceGen, function(k,v){
+			if(this.checked)
+				selectedGen = v.value;
+		});
+		if(!selectedGen){
+			$('#error').text("Please check a box for your gender");
+			return false;
+		}
+		//end check gender
+
 		//check picture
 		if(size == 0) {
 			$('#error').text("Please add a picture");
@@ -51,24 +114,6 @@ $(document).ready(function(){
 		}
 		//end check picture
 
-
-		//check age exp level
-		var choiceExp = $('input[name="experience"]');
-		var selectedExp;
-		$.each(choiceExp, function(k,v){
-			if(this.checked)
-				selectedExp = v.value;
-		});
-		if(selectedExp){
-			validated = true;
-		}
-		else{
-			$('#error').text("Please check a box for your experience level");
-			validated = false;
-			return false;
-		}
-		//end check exp level
-
 		//check age
 		var choiceAge = $('input[name="age-category"]');
 		var selectedAge;
@@ -76,79 +121,113 @@ $(document).ready(function(){
 			if(this.checked)
 				selectedAge = v.value;
 		});
-		if(selectedAge){
-			validated = true;
-		}
-		else{
+		if(!selectedAge){
 			$('#error').text("Please check a box for your age category");
-			validated = false;
 			return false;
 		}
 		//end check age
 
-		//check all text categories
-		for(var i=0; i<11; i++) {
-			if($.trim(handle[i].val()) == ""){
-			    $('#error').text(msg[i]);
-			    handle[i].focus();
-			    return false;
-			}
-		}
 
-		var phone1 = $.trim($('input[name="phone1"]'));
-		var phone2 = $.trim($('input[name="phone2"]'));
-		var phone3 = $.trim($('input[name="phone3"]'));
-
-
-
-
-		
-		
-		return validated;
-
+		return true;
 	}
-
-	/*
-	handling check boxes
-	<input type="checkbox" name="languages" value="C++" />C++
-	<input type="checkbox" name="languages" value="Java" />Java
-	<input type="checkbox" name="languages" value="Python" />Python
-	*/
+	handle[0].focus();
 
 
-	//radio buttons
-	// <input type="radio" name="age" value="child" />Child
-	// <input type="radio" name="age" value="Adult" />Adult
-	$('#agebutton').on('click', function(){
-		var choice = $('input[name="age"]');
-		var selected;
-		$.each(choice, function(k,v){
-			if(this.checked)
-				selected = v.value;
-		});
-		if(selected)
-			alert(selected);
-		else
-			alert("no category indicated");
-	})
+	//on blur, remove error message if it pertains to a fixed thing
+	//tried to make this into one clean function and I can't figure it out!!!
+	handle[0].on('blur', function(){
+		if($('#error').text() == msg[0] && handle[0].val() != "" ){
+			$('#error').text('');
+			$('#error').html('&nbsp;');
 
-	//dropdown
-	/*
-	<select id="dropdown" name="student">
-		<option value ="bad">---</option>
-		<option value="freshman">freshman</option>
-		<option value="Sophmore">Sophmore</option>
-		<option value="Junior">Junior</option>
-		<option value="Senior">Senior</option>
-	</select>
-	<input type="button" id="levelbutton" value="Show Level" />
-	*/
-	$('#levelbutton').on('click', function(){
-		var selection = $('#dropdown:selected').val(); //would .value work here?, you also can do .text to get the actual stuff in the tags
-		if(selection == "bad")
-			alert("you didn't select a level");
-		else
-			alert("you are a " + selection);
+		}
 	});
 
+	handle[1].on('blur', function(){
+		if($('#error').text() == msg[1] && handle[1].val() != "" ){
+			$('#error').text('');
+			$('#error').html('&nbsp;');
+
+		}
+	});
+
+	handle[2].on('blur', function(){
+		if($('#error').text() == msg[2] && handle[2].val() != "" ){
+			$('#error').text('');
+			$('#error').html('&nbsp;');
+
+		}
+	});
+
+	handle[3].on('blur', function(){
+		if($('#error').text() == msg[3] && handle[3].val() != "" ){
+			$('#error').text('');
+			$('#error').html('&nbsp;');
+
+		}
+	});
+
+	handle[4].on('blur', function(){
+		if($('#error').text() == msg[4] && handle[4].val() != "" ){
+			$('#error').text('');
+			$('#error').html('&nbsp;');
+
+		}
+	});
+
+	handle[5].on('blur', function(){
+		if($('#error').text() == msg[5] && handle[5].val() != "" ){
+			$('#error').text('');
+			$('#error').html('&nbsp;');
+
+		}
+	});
+
+	handle[6].on('blur', function(){
+		if($('#error').text() == msg[6] && handle[6].val() != "" ){
+			$('#error').text('');
+			$('#error').html('&nbsp;');
+
+		}
+	});
+
+	handle[7].on('blur', function(){
+		if($('#error').text() == msg[7] && handle[7].val() != "" ){
+			$('#error').text('');
+			$('#error').html('&nbsp;');
+
+		}
+	});
+
+	handle[8].on('blur', function(){
+		if($('#error').text() == msg[8] && handle[8].val() != "" ){
+			$('#error').text('');
+			$('#error').html('&nbsp;');
+
+		}
+	});
+
+	handle[9].on('blur', function(){
+		if($('#error').text() == msg[9] && handle[9].val() != "" ){
+			$('#error').text('');
+			$('#error').html('&nbsp;');
+
+		}
+	});
+
+	handle[10].on('blur', function(){
+		if($('#error').text() == msg[10] && handle[10].val() != "" ){
+			$('#error').text('');
+			$('#error').html('&nbsp;');
+
+		}
+	});
+
+
 });
+
+
+
+
+
+

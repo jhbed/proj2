@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Jake Bedard -->
+	<!-- jadrn007 -->
+	<!-- Red ID 818121974 -->
+
     <meta charset="utf-8">
     <title>SDSU Marathon</title>
     <link rel="stylesheet" href="styles.css">
@@ -23,7 +27,7 @@
 		<h1 id="form-title">Signup Here:</h1>
 
 		<!-- Start Form -->
-		<form action="#">
+		<form action="echo.php" name="signup-form" enctype="multipart/form-data">
 
 			<div class="form-row">
 				<div class="form-group col-md-4">
@@ -48,7 +52,7 @@
 				<input type="text" id="address" class="form-control form-control-sm" placeholder="Enter your address and street here" name="address1">
 			</div>
 			<div class="form-group">
-				<label for="address2">Address 2</label>
+				<label for="address2">Address 2 (Optional)</label>
 				<input type="text" id="address2" class="form-control form-control-sm" placeholder="Apartment #, floor, etc.">
 			</div>
 			
@@ -59,11 +63,11 @@
 				</div>
 				<div class="form-group col-md-2">
 					<label for="state">State</label>
-					<input type="text" id="state" class="form-control form-control-sm" placeholder="CA" name="state">
+					<input type="text" id="state" class="form-control form-control-sm" placeholder="CA" name="state" maxlength="2">
 				</div>
 				<div class="form-group col-md-4">
 					<label for="zip">Zip</label>
-					<input type="text" id="zip" class="form-control form-control-sm" name="zip">
+					<input type="text" id="zip" class="form-control form-control-sm" name="zip" maxlength="5">
 				</div>
 			</div>
 			
@@ -79,15 +83,15 @@
 				
 				
 				<div class="form-group col-md-1">
-					<input type="text" id="phone1" class="form-control form-control-sm text-center" placeholder="(999)" name="phone1">
+					<input type="text" id="phone1" class="form-control form-control-sm text-center" placeholder="(999)" name="phone1" maxlength="3">
 				</div>
 				
 				<div class="form-group col-md-1">
-					<input type="text" id="phone2" class="form-control form-control-sm text-center" placeholder="999" name="phone2">
+					<input type="text" id="phone2" class="form-control form-control-sm text-center" placeholder="999" name="phone2" maxlength="3">
 				</div>
 				
 				<div class="form-group col-md-2">
-					<input type="text" id="phone3" class="form-control form-control-sm text-center" placeholder="9999" name="phone3">
+					<input type="text" id="phone3" class="form-control form-control-sm text-center" placeholder="9999" name="phone3" maxlength="3">
 				</div>
 
 				<div class="col-md-8">
@@ -107,7 +111,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="dob">Date of Birth</label>
-					<input type="text" id="dob" class="form-control form-control-sm" name="dob">
+					<input type="text" id="dob" class="form-control form-control-sm"  placeholder="MM/DD/YY" name="dob">
 				</div>
 				<div class="form-group col-md-6">
 
@@ -131,9 +135,23 @@
 				</div>
 			</div>
 
+			<div class="form-group">
+				<label class="radio-title">Gender</label>
+				<div class="form-check form-check-inline">
+					<label class="form-check-label">
+						<input class="form-check-input" name="gender" type="radio" id="inlineradio2" value="Male"> Male
+					</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<label class="form-check-label">
+						<input class="form-check-input" name="gender" type="radio" id="inlineradio3" value="Female"> Female
+					</label>
+				</div>
+			</div>
+
 			<div class="form-row">
 				<div class="form-group col-md-12">
-					<label for="medical-conditions">Medical Conditions</label>
+					<label for="medical-conditions">Medical Conditions (Optional)</label>
 					<textarea id="medical-conditions" class="form-control form-control-sm" rows="2"></textarea>
 				</div>
 			</div>
@@ -167,7 +185,7 @@
 			</div>
 
 			
-			<p id="error"></p>
+			<p id="error">&nbsp;</p>
 			
 
 			<div class="text-center submit">
