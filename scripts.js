@@ -20,11 +20,16 @@ function isValidState(state) {
     "MD","ME","MH","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ",
     "NM","NV","NY","OH","OK","OR","PA","PR","RI","SC","SD","TN","TX",
     "UT","VA","VT","WA","WI","WV","WY");
-    for(var i=0; i < stateList.length; i++){
-        if(!stateList[i] == $.trim(state))
+    for(var i=0; i < stateList.length; i++)
+        if(stateList[i] == $.trim(state))
             return true;
-    }
+    
     return false;
+} 
+
+function isValidEmail(emailAddress) {
+    var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    return pattern.test(emailAddress);
 } 
 
 $(document).ready(function(){
@@ -50,7 +55,7 @@ $(document).ready(function(){
 
 
 	//validate
-	$('#submit-button').on('click', function(){
+	$(':submit').on('click', function(){
 		return validate();
 	});
 
@@ -68,14 +73,25 @@ $(document).ready(function(){
 			    return false;
 			}
 		}
-		/*
+		
 		//check states
 		if(isValidState(handle[4].val()) == "") { 
             $('#error').text("Please make sure you are using the correct 2 letter state abreviation");
             handle[4].focus();           
             return false;
         }
-        */
+
+        //check phone number
+        //end check phone number
+
+        //check email
+        if(!isValidEmail(handle[6].val())) {
+        	$('#error').text("The email address appears to be invalid");
+            handle[6].focus();            
+            return false;
+        }  
+        //end check email
+        
 
 		//check exp level
 		var choiceExp = $('input[name="experience"]');
@@ -221,6 +237,25 @@ $(document).ready(function(){
 			$('#error').html('&nbsp;');
 
 		}
+	});
+
+	handle[8].on('keyup', function() {
+		if(handle[8].val().length == 3)
+			handle[9].focus();
+	});
+
+	handle[9].on('keyup', function() {
+		if(handle[9].val().length == 3)
+			handle[10].focus();
+	});
+
+	handle[7].on('keyup', function(e){
+		if(e.keyCode != 8){
+			if(handle[7].val().length == 2 || handle[7].val().length == 5){
+				handle[7].val(handle[7].val() + "/");
+			}
+		}
+		
 	});
 
 

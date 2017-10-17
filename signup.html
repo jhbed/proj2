@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- Jake Bedard -->
-	<!-- jadrn007 -->
-	<!-- Red ID 818121974 -->
-
     <meta charset="utf-8">
     <title>SDSU Marathon</title>
     <link rel="stylesheet" href="styles.css">
@@ -14,6 +10,9 @@
     <!-- <script src="/jquery/jquery.js"></script> -->
     <script src="scripts.js"></script>
 </head>
+	<!-- Jake Bedard -->
+	<!-- jadrn007 -->
+	<!-- Red ID 818121974 -->
 <body>
 
 	<nav class="navbar navbar-dark bg-dark">
@@ -27,7 +26,7 @@
 		<h1 id="form-title">Signup Here:</h1>
 
 		<!-- Start Form -->
-		<form action="echo.php" name="signup-form" enctype="multipart/form-data">
+		<form action="echo.php" method="post" name="signup-form" enctype="multipart/form-data">
 
 			<div class="form-row">
 				<div class="form-group col-md-4">
@@ -91,7 +90,7 @@
 				</div>
 				
 				<div class="form-group col-md-2">
-					<input type="text" id="phone3" class="form-control form-control-sm text-center" placeholder="9999" name="phone3" maxlength="3">
+					<input type="text" id="phone3" class="form-control form-control-sm text-center" placeholder="9999" name="phone3" maxlength="4">
 				</div>
 
 				<div class="col-md-8">
@@ -102,7 +101,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-4">
 					<label for="email">Email</label>
-					<input type="text" id="email" class="form-control form-control-sm" placeholder="email@example.com" name="email">
+					<input type="email" id="email" class="form-control form-control-sm" placeholder="email@example.com" name="email">
 				</div>
 				<div class="col-md-8">
 					
@@ -111,7 +110,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="dob">Date of Birth</label>
-					<input type="text" id="dob" class="form-control form-control-sm"  placeholder="MM/DD/YY" name="dob">
+					<input type="text" id="dob" class="form-control form-control-sm"  placeholder="MM/DD/YY" name="dob" maxlength="8">
 				</div>
 				<div class="form-group col-md-6">
 
